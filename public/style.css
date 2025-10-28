@@ -1,0 +1,279 @@
+/* reset */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+/* --- STYLE DU HEADER --- */
+.container-header {
+    background-color: #ffcb05; /* Jaune Pokémon */
+    display: flex; /* Met les liens sur une ligne */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    gap: 20px; /* Espacement entre les liens */
+    padding: 15px 20px; /* Espacement interne */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Ombre légère */
+    position: sticky; /* Fixé en haut quand on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+/* --- STYLE DES LIENS --- */
+.container-header a {
+    color: #2a75bb; /* Bleu Pokémon */
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease; /* Animation fluide */
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+/* --- EFFET AU SURVOL --- */
+.container-header a:hover {
+    background-color: #2a75bb;
+    color: white;
+    transform: translateY(-2px); /* Petit effet de mouvement */
+}
+
+/* --- VERSION MOBILE (menu compact) --- */
+@media (max-width: 768px) {
+    .container-header {
+        flex-wrap: wrap; /* Passe sur plusieurs lignes */
+        gap: 10px;
+        text-align: center;
+    }
+
+    .container-header a {
+        flex: 1 1 45%; /* Chaque lien prend la moitié de la ligne */
+    }
+}
+/*  suite  */
+
+:root {
+    --red: #ff0000;
+    --yellow: #ffde00;
+    --blue: #3b4cca;
+    --black: #333;
+}
+
+body {
+    border-top: 8px solid var(--yellow);
+}
+
+::selection {
+    background: var(--red);
+}
+
+h1 {
+    text-align: center;
+}
+
+.page {
+    max-width: 560px;
+    min-height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 5px var(--blue);
+    border: 1px solid var(--blue);
+    margin: 32px 0;
+    width: 100%;
+    max-width: 360px;
+}
+
+input:placeholder-shown + label {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+/* Other CSS to make it look cool */
+
+form {
+    border: 1px solid var(--blue);
+    padding: 24px 32px;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 5px var(--blue);
+    text-align: center;
+    width: 360px;
+}
+
+form h2 {
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid var(--black);
+    transition: all 0.1s;
+    font-size: 20px;
+    background: white;
+}
+
+.group {
+    position: relative;
+}
+
+input + label {
+    border: 1px solid var(--black);
+    position: absolute;
+    top: 0;
+    left: 20px;
+    transition: all 0.1s;
+    opacity: 1;
+    background: white;
+    border: 2px solid;
+    border-width: 0 2px 0 2px;
+    padding: 0 5px;
+    transform: translateY(calc(50% + 5px));
+}
+
+input:focus {
+    outline: 0;
+    border-color: var(--blue);
+}
+
+input:focus + label {
+    border-color: var(--blue);
+}
+
+footer {
+    border-top: 1px solid var(--black);
+    flex-shrink: 0;
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    border: 2px solid var(--blue);
+    border-radius: 500px;
+    padding: 4px;
+    background: white;
+}
+
+ol a {
+    font-size: 24px;
+    color: var(--blue);
+    text-align: center;
+}
+
+ol li {
+    margin-bottom: 16px;
+}
+/* footer stylisation */
+/* ==== STYLE GLOBAL DU FOOTER ==== */
+footer {
+    background-color: #2a75bb; /* Bleu Pokémon */
+    color: white;
+    padding: 40px 20px;
+    font-family: "Poppins", sans-serif;
+    border-top: 4px solid #ffcb05; /* Ligne jaune pour rappeler le header */
+}
+
+/* ==== CONTENEUR PRINCIPAL ==== */
+.container-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%; /* ✅ à ajouter */
+    margin: 0;
+    gap: 40px;
+}
+
+/* ==== BLOCS DE COLONNES ==== */
+.container-footer > div {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* ==== TITRES ==== */
+.container-footer h2 {
+    font-size: 1.3rem;
+    color: #ffcb05;
+    margin-bottom: 12px;
+}
+
+/* ==== LIENS TEXTUELS ==== */
+.container-footer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    transition: color 0.3s ease;
+}
+
+.container-footer a:hover {
+    color: #ffcb05;
+}
+
+/* ==== ICÔNES DE RÉSEAUX SOCIAUX ==== */
+.container-footer div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.container-footer div:nth-child(2) a img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container-footer div:nth-child(2) a img:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(255, 203, 5, 0.8);
+}
+
+/* ==== LOGO ET MENTIONS ==== */
+.container-footer div:last-child {
+    text-align: center;
+}
+
+.container-footer div:last-child img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.container-footer p {
+    font-size: 0.85rem;
+    color: #eaeaea;
+    margin-top: 10px;
+}
+
+/* ==== VERSION MOBILE ==== */
+@media (max-width: 768px) {
+    .container-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container-footer div {
+        min-width: 100%;
+    }
+
+    .container-footer div:nth-child(2) {
+        justify-content: center;
+    }
+}
