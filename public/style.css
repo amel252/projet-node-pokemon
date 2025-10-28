@@ -181,7 +181,16 @@ main.content p {
     margin-bottom: 30px; /* espace avant le footer */
     gap: 30px;
 }
-
+/* .home-container h1 {
+} */
+.home-container a {
+    font-size: 24px;
+    color: var(--blue);
+    text-align: center;
+}
+.home-container li {
+    margin-bottom: 16px;
+}
 /* ===================== */
 /* INPUT & LABEL FLOTTANT */
 /* ===================== */

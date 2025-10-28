@@ -17,7 +17,14 @@
 
     <!-- Section home -->
     <div class="home-container">
-        <h1>Home Page</h1>
-        <p>Bienvenue sur la page d’accueil Pokémon !</p>
+        <h1>Pokedex</h1>
+        <ol class="pokedex">
+            {{#each pokemons.results}}
+                <li>
+                    <a href="/{{this.name}}">{{this.name}}</a>
+                </li>
+            {{/each}}
+        </ol>
+
     </div>
 </section>
