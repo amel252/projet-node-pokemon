@@ -15,6 +15,14 @@ app.set("view engine", "handlebars");
 app.get("/", (req, res) => {
     res.render("home", { title: "Home" });
 });
+// app.get("/about", (req, res) => {
+//     res.render("about", { title: "about", subTitle: "Ma about page" });
+// });
+// ca nous evite de créer une page pour chaque pokémon
+app.get("/:title", (req, res) => {
+    const title = req.params.title;
+    res.render("about", { title, subTitle: `Ma page ${title}` });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
