@@ -94,7 +94,7 @@ main.content {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: 40px 0; /* ✅ enlève la hauteur fixe et le padding trop grand */
+    padding: 40px 0;
     gap: 40px;
 }
 
@@ -125,7 +125,8 @@ main.content p {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--blue);
     width: 400px;
-    gap: 30px; /* espace vertical entre les champs */
+    gap: 30px;
+    /* espace vertical entre les champs */
 }
 
 .search-container h2 {
@@ -170,14 +171,15 @@ main.content p {
     width: 400px;
     /* max-width: 400px; */
     height: auto;
-    min-height: 200px;
+    min-height: 350px;
     text-align: center;
     background: white;
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--blue);
-    margin-bottom: 80px; /* espace avant le footer */
+    margin-bottom: 30px; /* espace avant le footer */
+    gap: 30px;
 }
 
 /* ===================== */
