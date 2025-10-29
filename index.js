@@ -7,19 +7,21 @@ const fetch = (...args) =>
 // const exphbs = require("express-handlebars");
 const path = require("path");
 const PORT = process.env.PORT || 5003;
-
 const app = express();
+
+const catchErrors =
+    (asyncFunction) =>
+    (...args) =>
+        asyncFunction(...args).catch(console.error);
+// Explication : La fonction catchErrors sert à éviter que ton programme plante quand une fonction asynchrone (avec async/await) fait une erreur. un petit outil pour ne plus avoir besoin de mettre des try...catch partout.
+
 //  récuperer la data
-const getAllPokemon = async () => {
-    try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
-        const json = await res.json();
-        console.table(json.results);
-        return json;
-    } catch (err) {
-        console.log(err);
-    }
-};
+const getAllPokemon = catchErrors(async () => {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const json = await res.json();
+    console.table(json.results);
+    return json;
+});
 //middleware(tou ce qui se passe au milieu )
 app.use(express.static(path.join(__dirname, "public"))); // il va considérer comme racine du projet et il va l'afficher
 //  je vais appelé handlebars qui vient de exphbs
@@ -27,15 +29,13 @@ app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 
 // routes
-app.get("/", async (req, res) => {
-    try {
+app.get(
+    "/",
+    catchErrors(async (req, res) => {
         const pokemons = await getAllPokemon();
         res.render("home", { pokemons });
-    } catch (err) {
-        console.log(err);
-        // res.status(500).send("Erreur serveur");
-    }
-});
+    })
+);
 // ca nous evite de créer une page pour chaque pokémon
 app.get("/:title", (req, res) => {
     const title = req.params.title;
