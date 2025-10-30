@@ -181,16 +181,29 @@ main.content p {
     margin-bottom: 30px; /* espace avant le footer */
     gap: 30px;
 }
-/* .home-container h1 {
-} */
+.home-container img {
+    border: 2px solid var(--blue);
+    border-radius: 500px;
+    padding: 4px;
+    background: white;
+}
 .home-container a {
     font-size: 24px;
     color: var(--blue);
     text-align: center;
 }
-.home-container li {
-    margin-bottom: 16px;
+.home-container ol {
+    list-style-position: inside; /* met les puces à l'intérieur */
+    padding: 0; /* enlève le retrait à gauche */
+    margin: 0 auto; /* centre le bloc */
+    display: inline-block; /* permet le centrage horizontal */
+    text-align: left; /* garde le texte bien aligné */
 }
+.home-container li {
+    list-style-type: disc; /* puces rondes */
+    font-size: 1rem;
+}
+
 /* ===================== */
 /* INPUT & LABEL FLOTTANT */
 /* ===================== */
