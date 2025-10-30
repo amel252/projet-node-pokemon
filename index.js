@@ -21,8 +21,11 @@ const catchErrors =
 //  récuperer toute la date
 const getAllPokemon = catchErrors(async () => {
     const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    if (!res.ok) {
+        console.error("Erreur API:", res.status);
+        return null; // ou undefined
+    }
     const json = await res.json();
-    console.table(json.results);
     return json;
 });
 // récuperer un seul élement
@@ -34,7 +37,16 @@ const getPokemon = catchErrors(async (pokemon = "1") => {
 //middleware(tout ce qui se passe au milieu )
 app.use(express.static(path.join(__dirname, "public"))); // il va considérer comme racine du projet et il va l'afficher
 //  je vais appelé handlebars qui vient de exphbs
-app.engine(".hbs", engine({ extname: ".hbs" }));
+//rajout
+app.engine(
+    ".hbs",
+    engine({
+        extname: ".hbs",
+        defaultLayout: "main", // ✅ définit le layout principal
+        layoutsDir: path.join(__dirname, "views", "layouts"), // ✅ indique où il se trouve
+        partialsDir: path.join(__dirname, "views", "partials"), // ✅ pour tes header/footer
+    })
+);
 app.set("view engine", ".hbs");
 
 // routes
@@ -45,14 +57,23 @@ app.get(
         res.render("home", { pokemons });
     })
 );
-
+// l'ordre est important
+app.get("/notFound", (req, res) => {
+    res.render("notFound");
+});
 // ca nous evite de créer une page pour chaque pokémon
 app.get(
     "/:pokemon",
     catchErrors(async (req, res) => {
         const search = req.params.pokemon;
         const pokemon = await getPokemon(search);
-        res.render("pokemon", { pokemon });
+        // si le pokemon existe sur ma liste il va l'afficher
+        if (pokemon) {
+            res.render("pokemon", { pokemon });
+            // sinon il va afficher page notFound
+        } else {
+            return res.redirect("notFound");
+        }
     })
 );
 

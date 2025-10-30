@@ -13,13 +13,10 @@
     </head>
     <body>
         {{! je peux ajouter des élements qui vont apparaitre dans toute mes pages comme header }}
-        <div>
         {{>header class="page"}}
             <main class="content">
                 {{{body}}}
             </main>
-        
             {{>footer}}
-        </div>
     </body>
 </html>

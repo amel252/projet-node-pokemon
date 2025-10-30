@@ -20,7 +20,7 @@
         <ol class="pokedex">
             {{#each pokemons.results}}
                 <li>
-                    <a href="/{{this.name}}">{{this.name}}</a>
+                    <a href="/{{this.name}}">{{capitalize this.name}}</a>
                 </li>
             {{/each}}
         </ol>
