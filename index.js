@@ -1,11 +1,14 @@
 const express = require("express");
+// import express-handlebars =>
 const { engine } = require("express-handlebars");
-// const fetch = require("node-fetch");
+// import fetch(commonJs) =>
 const fetch = (...args) =>
     import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-// const exphbs = require("express-handlebars");
 const path = require("path");
+// import mais avec précision que string
+const helpers = require("handlebars-helpers")(["string"]);
+
 const PORT = process.env.PORT || 5003;
 const app = express();
 

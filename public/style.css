@@ -115,17 +115,21 @@ main.content p {
 /* ===================== */
 /* FORMULAIRE DE RECHERCHE */
 /* ===================== */
-.search-container form {
+section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2px; /* espace régulier entre recherche et home */
+    /* margin-top: 5px; optionnel : espace depuis le header */
+}
+.search-container form {
     background: white;
-    padding: 30px 40px;
+    padding: 20px 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--blue);
     width: 400px;
-    gap: 30px;
+    /* gap: 8px; */
     /* espace vertical entre les champs */
 }
 
@@ -169,17 +173,16 @@ main.content p {
 /* ===================== */
 .home-container {
     width: 400px;
-    /* max-width: 400px; */
     height: auto;
     min-height: 350px;
     text-align: center;
     background: white;
-    padding: 30px 40px;
+    padding: 20px 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--blue);
     margin-bottom: 30px; /* espace avant le footer */
-    gap: 30px;
+    gap: 8px;
 }
 .home-container img {
     border: 2px solid var(--blue);

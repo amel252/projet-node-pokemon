@@ -1,25 +1,29 @@
-<div class="search-container">
-    <form>
-        <h2>Recherche Pokémon</h2>
-        <div class="input-group">
-            <input
-                type="text"
-                id="pokemon"
-                name="pokemon"
-                placeholder="Nom du Pokémon"
-            />
-            <label for="pokemon">Nom du Pokémon</label>
-        </div>
-    </form>
-</div>
-<div class="home-container">
-    <h1>{{pokemon.name}}</h1>
-    <img src={{pokemon.sprites.front_default}} alt={{pokemon.name}} />
-    <br />
-    <br />
-    <h2>Type(s): </h2>
-    <br />
-    <ol>
-        {{#each pokemon.types}}<li>{{this.type.name}}</li>{{/each}}
-    </ol>
-</div>
+<section>
+    <div class="search-container">
+        <form>
+            <h2>Recherche Pokémon</h2>
+            <div class="input-group">
+                <input
+                    type="text"
+                    id="pokemon"
+                    name="pokemon"
+                    placeholder="Nom du Pokémon"
+                />
+                <label for="pokemon">Nom du Pokémon</label>
+            </div>
+        </form>
+    </div>
+    <div class="home-container">
+        <h1>{{capitalize pokemon.name}}</h1>
+        <img src={{pokemon.sprites.front_default}} alt={{pokemon.name}} />
+        <br />
+        <br />
+        <h2>Type(s): </h2>
+        <br />
+        <ol>
+            {{#each pokemon.types}}
+                <li>{{capitalize this.type.name}}</li>
+            {{/each}}
+        </ol>
+    </div>
+</section>
