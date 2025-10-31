@@ -6,6 +6,8 @@ const fetch = (...args) =>
     import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const path = require("path");
+const bodyParser = require("body-parser");
+
 // import mais avec précision que string
 const helpers = require("handlebars-helpers")(["string"]);
 
@@ -19,25 +21,42 @@ const catchErrors =
 // Explication : La fonction catchErrors sert à éviter que ton programme plante quand une fonction asynchrone (avec async/await) fait une erreur. un petit outil pour ne plus avoir besoin de mettre des try...catch partout.
 
 //  récuperer toute la date
-const getAllPokemon = catchErrors(async () => {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
-    if (!res.ok) {
-        console.error("Erreur API:", res.status);
-        return null; // ou undefined
+const getAllPokemon = async () => {
+    try {
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+        if (!res.ok) {
+            console.error("Erreur API:", res.status, res.statusText);
+            return null;
+        }
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        console.error("Erreur fetch :", err);
+        return null;
     }
-    const json = await res.json();
-    return json;
-});
+};
+
 // récuperer un seul élement
-const getPokemon = catchErrors(async (pokemon = "1") => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-    const json = await res.json();
-    return json;
-});
+const getPokemon = async (pokemon = "1") => {
+    try {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+        if (!res.ok) {
+            // ⚠️ Vérifie si la requête a réussi
+            console.error("Erreur API:", res.status, res.statusText);
+            return null; // retourne null si le Pokémon n'existe pas
+        }
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        console.error("Erreur fetch :", err);
+        return null;
+    }
+};
+
 //middleware(tout ce qui se passe au milieu )
-app.use(express.static(path.join(__dirname, "public"))); // il va considérer comme racine du projet et il va l'afficher
-//  je vais appelé handlebars qui vient de exphbs
-//rajout
+app.use(express.static(path.join(__dirname, "public"))); // il va considérer public racine du projet et il va l'afficher
+
+//rajout spécifique
 app.engine(
     ".hbs",
     engine({
@@ -48,6 +67,8 @@ app.engine(
     })
 );
 app.set("view engine", ".hbs");
+//  je veux des librairies externe pour charger
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes
 app.get(
@@ -72,7 +93,7 @@ app.get(
             res.render("pokemon", { pokemon });
             // sinon il va afficher page notFound
         } else {
-            return res.redirect("notFound");
+            return res.redirect("/notFound");
         }
     })
 );
