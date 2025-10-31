@@ -1,14 +1,15 @@
 <!-- Section de recherche -->
 <section>
     <div class="search-container">
-        <form>
+        <form method="post" action="/search">
             <h2>Recherche Pokémon</h2>
-            <div class="input-group" method="post" action="/search">
+            <div class="input-group">
                 <input
                     type="text"
-                    id="pokemon"
-                    name="pokemon"
+                    id="name"
+                    name="search"
                     placeholder="Nom du Pokémon"
+                    value=""
                 />
                 <label for="pokemon">Nom du Pokémon</label>
             </div>

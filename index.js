@@ -78,6 +78,15 @@ app.get(
         res.render("home", { pokemons });
     })
 );
+
+app.post("/search", (req, res) => {
+    const search = req.body.search.trim().toLowerCase();
+    res.redirect(`/${search}`);
+});
+// Routes pour pages “normales”
+app.get("/actualites", (req, res) => {
+    res.render("actualites");
+});
 // l'ordre est important
 app.get("/notFound", (req, res) => {
     res.render("notFound");
